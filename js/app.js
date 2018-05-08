@@ -40,10 +40,170 @@ var firstPike = {
 }; // end declare object firstPike
 
 
+var seaTac = {
+    storeName: 'SeaTac Airport',
+    storeNum: 2,
+    minCustomer: 23,
+    maxCustomer: 65, 
+    avgCookie: 6.3,
+    hrCustomer: [], 
+    hrCookies: [], 
+    totalCookies: 0,
+    fakeCustomerVisits: function() {
+        for(var i = 0; i < hours.length; i++) { // for each hours
+            // grab a random number from this.minCustomer to this.maxCustomer
+            // store number in this.hrCustomer[i] using this.hrCustomer.push
+            this.hrCustomer.push(randomCount(this.minCustomer, this.maxCustomer));
+            // hrCookies[i] = this.hrCustomer[i] * this.avgCookie; use .push
+            this.hrCookies.push(Math.round(this.hrCustomer[i] * this.avgCookie));
+            // add current hrCookies to totalCookies
+            this.totalCookies += this.hrCookies[i]; 
+        } // end for loop
+    }, // end fakeCustomerVisits  
+    render: function() {
+        // get ul by id
+        var list = document.getElementById('sales_store' + this.storeNum); 
+        for (var i = 0; i < hours.length; i++) { // in a loop for each work hour
+            var newLi = document.createElement('li');
+            newLi.textContent = '' + hours[i] + ': ' + this.hrCookies[i] + ' cookies';
+            list.appendChild(newLi);
+        } // end loop of make li, put data in li, place li in DOM
+        var lastLi = document.createElement('li'); 
+        lastLi.textContent = 'Total: ' + this.totalCookies + ' cookies';
+        lastLi.setAttribute('class', 'sales_total');
+        list.appendChild(lastLi);
+    } // end render: function()
+
+}; // end declare object seaTac
+
+
+var seaCenter = {
+    storeName: 'Seattle Center',
+    storeNum: 3,
+    minCustomer: 23,
+    maxCustomer: 65, 
+    avgCookie: 6.3,
+    hrCustomer: [], 
+    hrCookies: [], 
+    totalCookies: 0,
+    fakeCustomerVisits: function() {
+        for(var i = 0; i < hours.length; i++) { // for each hours
+            // grab a random number from this.minCustomer to this.maxCustomer
+            // store number in this.hrCustomer[i] using this.hrCustomer.push
+            this.hrCustomer.push(randomCount(this.minCustomer, this.maxCustomer));
+            // hrCookies[i] = this.hrCustomer[i] * this.avgCookie; use .push
+            this.hrCookies.push(Math.round(this.hrCustomer[i] * this.avgCookie));
+            // add current hrCookies to totalCookies
+            this.totalCookies += this.hrCookies[i]; 
+        } // end for loop
+    }, // end fakeCustomerVisits  
+    render: function() {
+        // get ul by id
+        var list = document.getElementById('sales_store' + this.storeNum); 
+        for (var i = 0; i < hours.length; i++) { // in a loop for each work hour
+            var newLi = document.createElement('li');
+            newLi.textContent = '' + hours[i] + ': ' + this.hrCookies[i] + ' cookies';
+            list.appendChild(newLi);
+        } // end loop of make li, put data in li, place li in DOM
+        var lastLi = document.createElement('li'); 
+        lastLi.textContent = 'Total: ' + this.totalCookies + ' cookies';
+        lastLi.setAttribute('class', 'sales_total');
+        list.appendChild(lastLi);
+    } // end render: function()
+
+}; // end declare object seaCenter
+
+
+var capHill = {
+    storeName: 'Capitol Hill',
+    storeNum: 4,
+    minCustomer: 23,
+    maxCustomer: 65, 
+    avgCookie: 6.3,
+    hrCustomer: [], 
+    hrCookies: [], 
+    totalCookies: 0,
+    fakeCustomerVisits: function() {
+        for(var i = 0; i < hours.length; i++) { // for each hours
+            // grab a random number from this.minCustomer to this.maxCustomer
+            // store number in this.hrCustomer[i] using this.hrCustomer.push
+            this.hrCustomer.push(randomCount(this.minCustomer, this.maxCustomer));
+            // hrCookies[i] = this.hrCustomer[i] * this.avgCookie; use .push
+            this.hrCookies.push(Math.round(this.hrCustomer[i] * this.avgCookie));
+            // add current hrCookies to totalCookies
+            this.totalCookies += this.hrCookies[i]; 
+        } // end for loop
+    }, // end fakeCustomerVisits  
+    render: function() {
+        // get ul by id
+        var list = document.getElementById('sales_store' + this.storeNum); 
+        for (var i = 0; i < hours.length; i++) { // in a loop for each work hour
+            var newLi = document.createElement('li');
+            newLi.textContent = '' + hours[i] + ': ' + this.hrCookies[i] + ' cookies';
+            list.appendChild(newLi);
+        } // end loop of make li, put data in li, place li in DOM
+        var lastLi = document.createElement('li'); 
+        lastLi.textContent = 'Total: ' + this.totalCookies + ' cookies';
+        lastLi.setAttribute('class', 'sales_total');
+        list.appendChild(lastLi);
+    } // end render: function()
+
+}; // end declare object capHill
+
+
+var alki = {
+    storeName: 'Alki',
+    storeNum: 5,
+    minCustomer: 23,
+    maxCustomer: 65, 
+    avgCookie: 6.3,
+    hrCustomer: [], 
+    hrCookies: [], 
+    totalCookies: 0,
+    fakeCustomerVisits: function() {
+        for(var i = 0; i < hours.length; i++) { // for each hours
+            // grab a random number from this.minCustomer to this.maxCustomer
+            // store number in this.hrCustomer[i] using this.hrCustomer.push
+            this.hrCustomer.push(randomCount(this.minCustomer, this.maxCustomer));
+            // hrCookies[i] = this.hrCustomer[i] * this.avgCookie; use .push
+            this.hrCookies.push(Math.round(this.hrCustomer[i] * this.avgCookie));
+            // add current hrCookies to totalCookies
+            this.totalCookies += this.hrCookies[i]; 
+        } // end for loop
+    }, // end fakeCustomerVisits  
+    render: function() {
+        // get ul by id
+        var list = document.getElementById('sales_store' + this.storeNum); 
+        for (var i = 0; i < hours.length; i++) { // in a loop for each work hour
+            var newLi = document.createElement('li');
+            newLi.textContent = '' + hours[i] + ': ' + this.hrCookies[i] + ' cookies';
+            list.appendChild(newLi);
+        } // end loop of make li, put data in li, place li in DOM
+        var lastLi = document.createElement('li'); 
+        lastLi.textContent = 'Total: ' + this.totalCookies + ' cookies';
+        lastLi.setAttribute('class', 'sales_total');
+        list.appendChild(lastLi);
+    } // end render: function()
+
+}; // end declare object alki
+
+
+
+
 function randomCount(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+
 firstPike.fakeCustomerVisits();
 firstPike.render();
+seaTac.fakeCustomerVisits();
+seaTac.render();
+seaCenter.fakeCustomerVisits();
+seaCenter.render();
+capHill.fakeCustomerVisits();
+capHill.render();
+alki.fakeCustomerVisits();
+alki.render();
+
 
