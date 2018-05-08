@@ -8,16 +8,17 @@ td, .data {
     font-family: Helvetica, Verdana, Arial, sans-serif; 
     color: salmon;
     background-color: darkblue; 
-    padding: 5px; 
+    padding: 6px; 
 }
 .highlight {
     font-family: 'Titan One', cursive;
     color: darkgreen;
-    letter-spacing: 0.05em; 
+    letter-spacing: 0.06em; 
 }
 
 h1, h2, h3, h4, h5, h6 { 
     font-weight: bold; 
+    margin: 0 0 0.5em 0; 
 }
 
 h1 {
@@ -27,6 +28,9 @@ h1 {
 
 h2 {
     font-size: 18pt;
+}
+p {
+    margin: .2em 0;  
 }
 
 li.sales_total { 
