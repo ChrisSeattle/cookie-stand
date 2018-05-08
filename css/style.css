@@ -11,3 +11,8 @@ h1 {
 h2 {
     font-size: 18pt;
 }
+
+li.sales_total { 
+   background: yellow;
+   color: green;  
+}

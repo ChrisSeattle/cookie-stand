@@ -25,7 +25,7 @@ var firstPike = {
     }, // end fakeCustomerVisits  
     render: function() {
         // get ul by id
-        var list = document.getElementById('sales_store1'); // later can use storeNum
+        var list = document.getElementById('sales_store' + this.storeNum); 
         for (var i = 0; i < hours.length; i++) { // in a loop for each work hour
             var newLi = document.createElement('li');
             newLi.textContent = '' + hours[i] + ': ' + this.hrCookies[i] + ' cookies';
@@ -33,10 +33,12 @@ var firstPike = {
         } // end loop of make li, put data in li, place li in DOM
         var lastLi = document.createElement('li'); 
         lastLi.textContent = 'Total: ' + this.totalCookies + ' cookies';
+        lastLi.setAttribute('class', 'sales_total');
         list.appendChild(lastLi);
     } // end render: function()
 
 }; // end declare object firstPike
+
 
 function randomCount(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
