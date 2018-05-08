@@ -10,15 +10,19 @@ var firstPike = {
     maxCustomer: 65, 
     avgCookie: 6.3,
     hrCustomer: [], 
-    hrCookies: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], 
-    fakeCustomerVisits: function() {
-        // for each hours
-        // grab a random number from this.minCustomer to this.maxCustomer
-        // store number in this.hrCustomer[i] using this.hrCustomer.push
-        // hrCookies[i] = this.hrCustomer[i] * this.avgCookie; use .push
-        // this.totalCookies += hrCookies[i];
-    }, 
+    hrCookies: [], 
     totalCookies: 0,
+    fakeCustomerVisits: function() {
+        for(var i = 0; i < hours.length; i++) { // for each hours
+            // grab a random number from this.minCustomer to this.maxCustomer
+            // store number in this.hrCustomer[i] using this.hrCustomer.push
+            this.hrCustomer.push(randomCount(this.minCustomer, this.maxCustomer));
+            // hrCookies[i] = this.hrCustomer[i] * this.avgCookie; use .push
+            this.hrCookies.push(Math.round(this.hrCustomer[i] * this.avgCookie));
+            // add current hrCookies to totalCookies
+            this.totalCookies += this.hrCookies[i]; 
+        } // end for loop
+    }, // end fakeCustomerVisits  
     render: function() {
         // get ul by id
         var list = document.getElementById('sales_store1'); // later can use storeNum
@@ -34,5 +38,10 @@ var firstPike = {
 
 }; // end declare object firstPike
 
+function randomCount(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+firstPike.fakeCustomerVisits();
 firstPike.render();
 
