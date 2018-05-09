@@ -38,7 +38,7 @@ p {
     margin: .2em 0;  
 }
 
-li.sales_total { 
+li.sales-total, td.sales-total { 
    background: yellow;
    color: green;  
 }

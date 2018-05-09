@@ -5,7 +5,7 @@
 // ==================================
 
 var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'] // length is 15
-var storeList = []; // this is populated when we add Store object 
+var storeList = []; // this is populated when we add Store object
 // var nameStore = ['First and Pike', 'SeaTac Airport', 'Seattle Center', 'Capitol Hill', 'Alki'];
 
 var minStaff = 2; // every store will always have 2 cookie workers
@@ -38,7 +38,7 @@ function Store(storeName, minCustomer, maxCustomer, avgCookie) {
 // ===========================
 // ==== make some methods ====
 // fakeCustomerVisit is guess based on company owner's expectations of hrly customers & avg sales
-// renderSales is output of sales 
+// renderSales is output of sales
 // renderStaff is report of staff needed based on hourly cookie sales
 // ===========================
 
@@ -91,7 +91,7 @@ Store.prototype.renderStaff = function(tableId, storeMinStaff, storeStaffWorkloa
         // staffNeeded will be at least minStaff, or 1 worker per staffWorkload of cookies
         // we will always assume to add staff if we go over by 1 or more
         var tdEl = document.createElement('td');
-        tdEl.textContent = '' + staffNeeded; 
+        tdEl.textContent = '' + staffNeeded;
         trEl.appendChild(tdEl);
     } // end for loop for all sales hours
     trEl.appendChild(tdEl);
@@ -102,7 +102,7 @@ Store.prototype.renderStaff = function(tableId, storeMinStaff, storeStaffWorkloa
 // create store objects with known variables
 // ==================
 
-// info given to use: 
+// info given to use:
 // First and Pike, 23, 65, 6.3
 // SeaTac Airport, 3, 24, 1.2
 // Seattle Center, 11, 38, 3.7
@@ -134,18 +134,44 @@ function tableHeader(tableId, tableHeaderList) { // asumes header on top row
     tableEl.appendChild(trEl);
 } // end function tableHeader
 
-function tableFooter(tableId, tableFooterList) {
-    // this is where totals for each hour is output
-
-} // end function tableFooter
+function salesHourlyTotal(tableId) {
+    // this will compute and render a row of the hourly sales, totaled over all stores
+    var tableEl = document.getElementById(tableId); // grab table id
+    var trEl = document.createElement('tr'); // make a row to hold td
+    // trEl.setAttribute('class', 'sales-total');
+    var tdEl = document.createElement('td'); // what to put in the storeName column
+    tdEl.setAttribute('class', 'sales-total');
+    tdEl.textContent = 'Totals';
+    trEl.appendChild(tdEl);
+    for(var i in hours) {
+        tdEl = document.createElement('td');
+        tdEl.setAttribute('class', 'sales-total');
+        var tempTotal = 0; // holds the total for currently working hour (the i hour)
+        // lookup and append total for each store at this given hour
+        for(var j in storeList) {
+            tempTotal += storeList[j].hrCookies[i];
+        } // end for loop for all store locations (for current i hour)
+        tdEl.textContent = tempTotal;
+        trEl.appendChild(tdEl);
+    } // end for loop for all sales hours
+    // get a total of all store totals for final sales table cell
+    tdEl = document.createElement('td');
+    tdEl.setAttribute('class', 'sales-total');
+    var tempTotal = 0;
+    for(var j in storeList) {
+        tempTotal += storeList[j].totalCookies
+    } // end for loop for all store locations (looking at .totalCookies)
+    tdEl.textContent = tempTotal;
+    trEl.appendChild(tdEl); // this is our last td for the sales table
+    tableEl.appendChild(trEl); // put this final row of Totals in table
+} // end function salesHourlyTotal
 
 function salesTable(tableId, tableHeaderList) {
     tableHeader(tableId, tableHeaderList);
     for(var i = 0; i < storeList.length; i++) {
         storeList[i].renderSales(tableId);
     }
-    var tableFoot = ''; 
-    tableFooter(tableId, tableFoot); 
+    salesHourlyTotal(tableId);
 } // end function salesTable
 
 function staffTable(tableId, tableHeaderList) {
