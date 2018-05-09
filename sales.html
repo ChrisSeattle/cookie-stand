@@ -17,6 +17,26 @@
         </ul>
     </nav>
 
+    <form id="add-store-form">
+        <fieldset>
+            <legend>New store location info</legend>
+
+            <label for="store-name">Store name: </label>
+            <input name="store-name" type="text" size="20" />
+
+            <label for="min-customer">Minimum Customer in an hour: </label>
+            <input name="min-customer" type="text" size="4" />
+
+            <label for="max-customer">Maximum Customer in an hour: </label>
+            <input name="max-customer" type="text" size="4" />
+
+            <label for="avg-cookie">Average Cookie Sales each Hour</label>
+            <input name="avg-cookie" type="text" size="4" />
+
+            <button type="submit">Add New Store Info</button>
+        </fieldset>
+    </form> <!-- function Store(storeName, minCustomer, maxCustomer, avgCookie) -->
+
     <table id="sales-data">
     </table>
 
