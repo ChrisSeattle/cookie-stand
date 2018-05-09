@@ -42,3 +42,14 @@ li.sales_total {
    background: yellow;
    color: green;  
 }
+nav ul {
+    list-style-type: none;
+    margin: 0; 
+    padding: 0;
+    overflow: hidden;
+}
+
+nav li {
+    float: left;
+    padding: 12px; 
+}
