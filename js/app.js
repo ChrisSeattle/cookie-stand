@@ -9,25 +9,22 @@ var formInput = document.getElementById('add-store-form');
 
 var salesTableTag = 'sales-data';
 var staffTableTag = 'staff-data';
-// ------------- Following used for Lab7 ----------------
-var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'] // length is 15
-var storeList = []; // this is populated when we add Store object
-// var nameStore = ['First and Pike', 'SeaTac Airport', 'Seattle Center', 'Capitol Hill', 'Alki'];
 
 var minStaff = 2; // every store will always have 2 cookie workers
 var staffWorkload = 20; // how many cookies/hr can each staff member handle
+var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm']; 
+var storeList = []; // this is populated when we add Store object
 
 var salesHeader = ['Store Name'].concat(hours, 'Daily Location Total');
 var staffHeader = hours.slice();
 staffHeader.unshift('Store Name');
-// I tried using unshift & push on newArray, after newArray = oldArray
-// However, these would also change oldArray.
-// ------------ End of global variabls put in for Lab7 ------------
 
-// ==================================
 // ======= Object Constructor =======
-// build a store constructor
-// in constructor push each object instance to storeList
+// We have a variety of store locations, we may add more stores. 
+// for each Store instance added, push each store object to storeList
+// also fill out hourly customers, hourly cookies, and total cookies
+// based on a model of the data passed for minimum & maximum customer
+// per hour, and average cookie sales. 
 // ==================================
 
 function Store(storeName, minCustomer, maxCustomer, avgCookie) {
@@ -40,9 +37,8 @@ function Store(storeName, minCustomer, maxCustomer, avgCookie) {
     this.totalCookies = 0;
     storeList.push(this);
     this.fakeCustomerVisits();
-}
+} // end object constructor Store
 
-// ===========================
 // ==== make some methods ====
 // fakeCustomerVisit is guess based on company owner's expectations of hrly customers & avg sales
 // renderSales is output of sales
@@ -106,7 +102,7 @@ Store.prototype.renderStaff = function(tableId, storeMinStaff, storeStaffWorkloa
 } // end renderStaff method
 
 // ==================
-// create store objects with known variables
+// create store objects with known variables (data from company owner)
 // ==================
 
 new Store('First and Pike', 23, 65, 6.3);
@@ -116,7 +112,7 @@ new Store('Capitol Hill', 20, 38, 2.3);
 new Store('Alki', 2, 16, 4.6);
 
 // ==================
-// functions potentially used in a few place
+// Helper functions, potentially used in a few place
 // ==================
 
 function randomCount(min, max) {
@@ -136,6 +132,7 @@ function tableHeader(tableId, tableHeaderList) { // asumes header on top row
 
 function salesHourlyTotal(tableId) {
     // this will compute and render a row of the hourly sales, totaled over all stores
+    // typically this is at the foot of the table. 
     var tableEl = document.getElementById(tableId); // grab table id
     var trEl = document.createElement('tr'); // make a row to hold td
     // trEl.setAttribute('class', 'sales-total');
@@ -171,7 +168,7 @@ function salesTable(tableId, tableHeaderList) {
     tableHeader(tableId, tableHeaderList);
     for(var i = 0; i < storeList.length; i++) {
         storeList[i].renderSales(tableId);
-    }
+    } // end loop to render sales info for each store
     salesHourlyTotal(tableId);
 } // end function salesTable
 
@@ -180,25 +177,14 @@ function staffTable(tableId, tableHeaderList) {
     tableHeader(tableId, tableHeaderList);
     for(var i in storeList) {
         storeList[i].renderStaff(tableId, minStaff, staffWorkload);
-    }
+    } // end loop to render staff needs for each store
 } // end function staffTable
 
-// ==================
-// using all objects in storeList, build the full table
-// make sure to have the header row of table
-// ==================
-
-salesTable(salesTableTag, salesHeader);
-staffTable(staffTableTag, staffHeader);
-    
-
-// ====================
-// Event functions
-// ====================
+// ==== Event functions / handlers. ====
 
 function handleStoreSubmit(e) {
     e.preventDefault(); // otherwise we get a page refresh on form and lose stuff
-    console.log('log of the event object', e);
+    // console.log('log of the event object', e);
     // console.log('log of the e.target', e.target);
     // console.log('log of a form input: ' + e.target.avg.value);
     
@@ -211,15 +197,23 @@ function handleStoreSubmit(e) {
     
     // constructor: Store(storeName, minCustomer, maxCustomer, avgCookie)
     var addedInstance = new Store(storeName, minCustomer, maxCustomer, avgCookie)
-    console.log(storeList[storeList.length -1]); // same as console.log(addedInstance); 
-    // addedInstance.renderSales('sales-data'); 
+    // console.log(storeList[storeList.length -1]); // same as console.log(addedInstance); 
+    // addedInstance.renderSales('sales-data'); would give us a row at end of current table. 
 
-    salesTable(salesTableTag, salesHeader)
-    staffTable(staffTableTag, staffHeader);
+    salesTable(salesTableTag, salesHeader); // remove current table & remake it including new data
+    staffTable(staffTableTag, staffHeader); // remove current table & remake it including new data
     
 } // end function handleStoreSubmit
 
+// ==================
+// On page load, using all objects in storeList, 
+// build the full sales table (with header, and hourly total),
+// and build staff table. 
+// ==================
 
+salesTable(salesTableTag, salesHeader);
+staffTable(staffTableTag, staffHeader);
+    
 // =====================================
 // Event listeners 
 // =====================================

@@ -22,16 +22,16 @@
             <legend>New store location info</legend>
 
             <label for="location">Store name: </label>
-            <input name="location" type="text" size="20" />
+            <input name="location" type="text" size="20" required pattern="^[A-Z][A-Za-z' -]+" />
 
             <label for="min">Minimum Customer in an hour: </label>
-            <input name="min" type="text" size="4" />
+            <input name="min" type="text" size="4" required pattern="[0-9]+" />
 
             <label for="max">Maximum Customer in an hour: </label>
-            <input name="max" type="text" size="4" />
+            <input name="max" type="text" size="4" required pattern="[0-9]+" />
 
             <label for="avg">Average Cookie Sales each Hour</label>
-            <input name="avg" type="text" size="4" />
+            <input name="avg" type="text" size="4" required pattern="[0-9]?+[.]?[0-9?]+" />
 
             <button type="submit">Add New Store Info</button>
         </fieldset>

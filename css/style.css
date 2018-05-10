@@ -59,3 +59,6 @@ fieldset {
     width: 90%; 
     padding: 1em; 
 }
+/* input:invalid {
+    outline: red solid 1px;
+} */
