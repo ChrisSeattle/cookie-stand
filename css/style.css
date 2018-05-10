@@ -53,3 +53,12 @@ nav li {
     float: left;
     padding: 12px; 
 }
+fieldset {
+    border: 2px solid yellow;
+    margin: 1em 1em; 
+    width: 90%; 
+    padding: 1em; 
+}
+/* input:invalid {
+    outline: red solid 1px;
+} */
