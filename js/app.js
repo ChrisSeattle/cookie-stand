@@ -2,8 +2,14 @@
 
 // ==================================
 // Some global variables, mostly set by paramters from company owner
+// Also some global variables to deal with listeners and handlers
 // ==================================
 
+var formInput = document.getElementById('add-store-form');
+
+var salesTableTag = 'sales-data';
+var staffTableTag = 'staff-data';
+// ------------- Following used for Lab7 ----------------
 var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'] // length is 15
 var storeList = []; // this is populated when we add Store object
 // var nameStore = ['First and Pike', 'SeaTac Airport', 'Seattle Center', 'Capitol Hill', 'Alki'];
@@ -16,6 +22,7 @@ var staffHeader = hours.slice();
 staffHeader.unshift('Store Name');
 // I tried using unshift & push on newArray, after newArray = oldArray
 // However, these would also change oldArray.
+// ------------ End of global variabls put in for Lab7 ------------
 
 // ==================================
 // ======= Object Constructor =======
@@ -80,7 +87,7 @@ Store.prototype.renderStaff = function(tableId, storeMinStaff, storeStaffWorkloa
     // storeStaffWorkload is how many cookies/hr for a worker, if we sell more per hour, add another staff member
     // currently storeMinStaff & storeStaffWorkload are always going to call minStaff & staffWorkload as set for all stores
     // potentially could have different values for different store locations, by calling this method with different values
-
+    
     var tableEl = document.getElementById(tableId); // get table by Id
     var trEl = document.createElement('tr'); // make a tr that holds some td
     var tdEl = document.createElement('td'); // first td is storeName
@@ -101,13 +108,6 @@ Store.prototype.renderStaff = function(tableId, storeMinStaff, storeStaffWorkloa
 // ==================
 // create store objects with known variables
 // ==================
-
-// info given to use:
-// First and Pike, 23, 65, 6.3
-// SeaTac Airport, 3, 24, 1.2
-// Seattle Center, 11, 38, 3.7
-// Capitol Hill, 20, 38, 2.3
-// Alki, 2, 16, 4.6
 
 new Store('First and Pike', 23, 65, 6.3);
 new Store('SeaTac Airport', 3, 24, 1.2);
@@ -167,6 +167,7 @@ function salesHourlyTotal(tableId) {
 } // end function salesHourlyTotal
 
 function salesTable(tableId, tableHeaderList) {
+    document.getElementById(tableId).innerHTML = ''; // remove whatever is already in the table
     tableHeader(tableId, tableHeaderList);
     for(var i = 0; i < storeList.length; i++) {
         storeList[i].renderSales(tableId);
@@ -175,6 +176,7 @@ function salesTable(tableId, tableHeaderList) {
 } // end function salesTable
 
 function staffTable(tableId, tableHeaderList) {
+    document.getElementById(tableId).innerHTML = ''; // remove whatever is already in the table
     tableHeader(tableId, tableHeaderList);
     for(var i in storeList) {
         storeList[i].renderStaff(tableId, minStaff, staffWorkload);
@@ -186,5 +188,40 @@ function staffTable(tableId, tableHeaderList) {
 // make sure to have the header row of table
 // ==================
 
-salesTable('sales-data', salesHeader);
-staffTable('staff-data', staffHeader);
+salesTable(salesTableTag, salesHeader);
+staffTable(staffTableTag, staffHeader);
+    
+
+// ====================
+// Event functions
+// ====================
+
+function handleStoreSubmit(e) {
+    e.preventDefault(); // otherwise we get a page refresh on form and lose stuff
+    console.log('log of the event object', e);
+    // console.log('log of the e.target', e.target);
+    // console.log('log of a form input: ' + e.target.avg.value);
+    
+    // e.target.'formName'.value 
+    // form names: location, min, max, avg
+    var storeName = e.target.location.value;
+    var minCustomer = e.target.min.value;
+    var maxCustomer = e.target.max.value;
+    var avgCookie = e.target.avg.value; 
+    
+    // constructor: Store(storeName, minCustomer, maxCustomer, avgCookie)
+    var addedInstance = new Store(storeName, minCustomer, maxCustomer, avgCookie)
+    console.log(storeList[storeList.length -1]); // same as console.log(addedInstance); 
+    // addedInstance.renderSales('sales-data'); 
+
+    salesTable(salesTableTag, salesHeader)
+    staffTable(staffTableTag, staffHeader);
+    
+} // end function handleStoreSubmit
+
+
+// =====================================
+// Event listeners 
+// =====================================
+
+formInput.addEventListener('submit', handleStoreSubmit);
