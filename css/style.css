@@ -2,7 +2,44 @@
 body {
     font-family: Georgia, Times, serif; 
     color: black;
-    background-color: lightblue;      
+    background-color: lightblue;   
+}
+
+h1, h2, h3, h4, h5, h6 { 
+    font-weight: bold; 
+    margin: 0 0 0.5em 0; 
+}
+
+header {
+    width: 100%; 
+    background-image: url('/img/salmon.png');   
+    background-repeat: no-repeat;
+    background-position: center; 
+    height: 246px; 
+    text-align: center;
+}
+
+header h1 {
+    /* float: left; */
+    /* margin: 0 0 30px 0; */
+    /* padding 5px 0 0 0; */
+    /* width: 100%; */
+    /* background-imag:url('img/chinook.png'); */
+    color: salmon; 
+    padding: 105px 0 10px 0;
+    font-size: 20pt; 
+    text-align: center;
+}
+
+nav li {
+    background-color: salmon; 
+    width: 100px;
+    padding: 0 50px;  
+    /* display: inline;  */
+    /* float: left; */
+    /* border: 2px solid red;  */
+    /* padding: 5px 10px 5px 10px;  */
+    /* margin: 30px 10px 20px 10px;  */
 }
 td, th, .data {
     font-family: Helvetica, Verdana, Arial, sans-serif; 
@@ -21,15 +58,7 @@ th {
     letter-spacing: 0.06em; 
 }
 
-h1, h2, h3, h4, h5, h6 { 
-    font-weight: bold; 
-    margin: 0 0 0.5em 0; 
-}
 
-h1 {
-    text-align: center;
-    font-size: 20pt; 
-}
 
 h2 {
     font-size: 18pt;
