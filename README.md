@@ -1,7 +1,7 @@
 # Project Name
 
 **Author**: Chris L Chapman
-**Version**: 1.3.0 (increment the patch/fix version number up if you make more commits past your first submission)
+**Version**: 1.4.0 (increment the patch/fix version number up if you make more commits past your first submission)
 
 ## Overview
 Pat has a few stores for selling his Salmon Cookies. He would like to have sales.html that calculates the daily sales (currently based
